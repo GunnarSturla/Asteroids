@@ -11,6 +11,12 @@ public class Asteroids {
 		int lives = startlives;
 		boolean alive == (lives > 0);
 		
+		
+		StdDraw.setXscale(-100, 100);
+		StdDraw.setYscale(-100, 100);
+		
+		
+		
 		// The game loop. Here's where the magic happens
 		while(alive) {
 			// Check for user input
