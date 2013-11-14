@@ -8,10 +8,10 @@ public class asteroid extends SpaceObject {
 	// Notkun:	a1 = new asteroid(generation,degrees);
 	// Fyrir:	0 < gen <= 3
 	// Eftir:	a1 er asteriod af gen kynslóð sem hreyfist í deg átt
-	public asteroid(double x, double y, double spd, int dir, int rot,int gen) {
+	public asteroid(double x, double y, int gen) {
 		generation = gen;
-		direction = dir;
-		speed = 0.1;
+		direction = (int)(Math.random()*360 +0.5);
+		speed = 0.01*generation;
 		
 		rotspd = (int)(Math.random()*3 +0.5);
 		shape = (int)(Math.random()*3 +0.5); // ATH! breyta eftir því hve margar teinkingar við fáum
@@ -20,6 +20,13 @@ public class asteroid extends SpaceObject {
 	public void draw() {
 		double r =  this.generation*0.05;
 		StdDraw.circle(super.x, super.y, r);
+	}
+	
+	public double getSpeed() {
+		return this.speed;
+	}
+	public int getDirection() {
+		return this.direction;
 	}
 	/*public void move() {
 		double dx = super.speed * Math.cos(Math.toRadians(super.direction));
@@ -36,12 +43,12 @@ public class asteroid extends SpaceObject {
 	
 		StdDraw.setXscale(-1, 1);
 		StdDraw.setYscale(-1, 1);
-		asteroid a1 = new asteroid(0.5,0.5,0.01,(int)(Math.random()*360 +0.5),(int)(Math.random()*360 +0.5),1);
+		asteroid a1 = new asteroid(0.5,0.5,1);
 	//	asteroid a2 = new asteroid(0.0,0.0,2);
 	//	asteroid a3 = new asteroid(0.0,0.0,3);
 		while(true) {
 			StdDraw.clear();
-			a1.move();
+			a1.move(a1.getSpeed(), a1.getDirection());
 	//		a2.move();
 	//		a3.move();
 			a1.draw();
