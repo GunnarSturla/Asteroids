@@ -11,15 +11,17 @@ public class asteroid extends SpaceObject {
 	public asteroid(double x, double y, int gen) {
 		generation = gen;
 		direction = (int)(Math.random()*360 +0.5);
-		speed = 0.01*generation;
+		speed = 0.01/(generation*generation);
 		
 		rotspd = (int)(Math.random()*3 +0.5);
 		shape = (int)(Math.random()*3 +0.5); // ATH! breyta eftir því hve margar teinkingar við fáum
 	}
 	
 	public void draw() {
-		double r =  this.generation*0.05;
-		StdDraw.circle(super.x, super.y, r);
+		if(this.isVisible()) {
+			double r =  this.generation*0.05;
+			StdDraw.circle(super.x, super.y, r);
+		}
 	}
 	
 	public double getSpeed() {
@@ -28,33 +30,33 @@ public class asteroid extends SpaceObject {
 	public int getDirection() {
 		return this.direction;
 	}
-	/*public void move() {
-		double dx = super.speed * Math.cos(Math.toRadians(super.direction));
-		double dy = super.speed * Math.sin(Math.toRadians(super.direction));
-		
-		super.x = super.x + dx;
-		super.y = super.y + dy;
-		if(super.x < -1 || super.x > 1) this.x *= -1;
-		if(super.y < -1 || super.y > 1) this.y *= -1;
-	}*/
+	public void destroy() {
+		this.hide();
+	}
+
 
 	
 	public static void main(String[] args) {
-	
+		int timetilldeath = 200;
 		StdDraw.setXscale(-1, 1);
 		StdDraw.setYscale(-1, 1);
 		asteroid a1 = new asteroid(0.5,0.5,1);
-	//	asteroid a2 = new asteroid(0.0,0.0,2);
-	//	asteroid a3 = new asteroid(0.0,0.0,3);
+		asteroid a2 = new asteroid(0.0,0.0,2);
+		asteroid a3 = new asteroid(0.0,0.0,3);
 		while(true) {
 			StdDraw.clear();
 			a1.move(a1.getSpeed(), a1.getDirection());
-	//		a2.move();
-	//		a3.move();
+			a2.move(a2.getSpeed(), a2.getDirection());
+			a3.move(a3.getSpeed(), a3.getDirection());
 			a1.draw();
-	//		a2.draw();
-	//		a3.draw();
+			a2.draw();
+			a3.draw();
 			StdDraw.show(20);
+			/*if(timetilldeath == 0) {
+				a1.destroy();
+			} else {
+				timetilldeath--;
+			}*/
 			
 		}
 		

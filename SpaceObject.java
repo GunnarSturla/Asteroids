@@ -1,5 +1,6 @@
 public abstract class SpaceObject {
 	public double x, y;
+	public boolean visible;
 	
 	
 	// Notkun:	a = new SpaceObject(x, y, 0.01, 90, 0);
@@ -7,6 +8,7 @@ public abstract class SpaceObject {
 	public void SpaceObject(double x, double y) {
 		this.x = x;
 		this.y = y;
+		visible = true;
 	}
 	
 	// Notkun:	a.move();
@@ -18,13 +20,20 @@ public abstract class SpaceObject {
 		
 		this.x = this.x + dx;
 		this.y = this.y + dy;
-		if(this.x < -1 || this.x > 1) this.x *= -1;
-		if(this.y < -1 || this.y > 1) this.y *= -1;
+		if(this.x < -1.2 || this.x > 1.2) this.x *= -1;
+		if(this.y < -1.2 || this.y > 1.2) this.y *= -1;
 	}
 
 	public boolean intersects(SpaceObject b) 
 	{
 		return false;
+	}
+	
+	public void hide() {
+		this.visible = false;
+	}
+	public boolean isVisible() {
+		return true;
 	}
 	
 	public abstract void draw();
