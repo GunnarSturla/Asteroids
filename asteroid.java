@@ -9,6 +9,7 @@ public class asteroid extends SpaceObject {
 	// Fyrir:	0 < gen <= 3
 	// Eftir:	a1 er asteriod af gen kynslóð sem hreyfist í deg átt
 	public asteroid(double x, double y, int gen) {
+		super(x,y);
 		generation = gen;
 		direction = (int)(Math.random()*360 +0.5);
 		speed = 0.01/(generation*generation);

@@ -1,14 +1,14 @@
-public abstract class SpaceObject {
+public class SpaceObject {
 	public double x, y;
 	public boolean visible;
 	
 	
 	// Notkun:	a = new SpaceObject(x, y, 0.01, 90, 0);
 	// 
-	public void SpaceObject(double x, double y) {
+	public SpaceObject(double x, double y) {
 		this.x = x;
 		this.y = y;
-		visible = true;
+		this.visible = true;
 	}
 	
 	// Notkun:	a.move();
@@ -33,9 +33,8 @@ public abstract class SpaceObject {
 		this.visible = false;
 	}
 	public boolean isVisible() {
-		return true;
+		return this.visible;
 	}
 	
-	public abstract void draw();
 
 }
