@@ -7,10 +7,8 @@ public class SpaceObject {
 	public SpaceObject(double x, double y) {
 		this.x = x;
 		this.y = y;
-<<<<<<< HEAD
-=======
 		this.visible = true;
->>>>>>> b14a345c49149cafaeeac6af9732ed03e4747cd9
+
 	}
 	
 	// Notkun:	a.move();
@@ -31,16 +29,11 @@ public class SpaceObject {
 		return false;
 	}
 	
-<<<<<<< HEAD
 	public abstract void draw();
-=======
 	public void hide() {
 		this.visible = false;
 	}
 	public boolean isVisible() {
 		return this.visible;
 	}
-	
->>>>>>> b14a345c49149cafaeeac6af9732ed03e4747cd9
-
 }
