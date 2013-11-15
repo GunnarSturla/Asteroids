@@ -1,12 +1,16 @@
-public abstract class SpaceObject {
+public class SpaceObject {
 	public double x, y;
 	
 	
 	// Notkun:	a = new SpaceObject(x, y, 0.01, 90, 0);
 	// 
-	public void SpaceObject(double x, double y) {
+	public SpaceObject(double x, double y) {
 		this.x = x;
 		this.y = y;
+<<<<<<< HEAD
+=======
+		this.visible = true;
+>>>>>>> b14a345c49149cafaeeac6af9732ed03e4747cd9
 	}
 	
 	// Notkun:	a.move();
@@ -27,6 +31,16 @@ public abstract class SpaceObject {
 		return false;
 	}
 	
+<<<<<<< HEAD
 	public abstract void draw();
+=======
+	public void hide() {
+		this.visible = false;
+	}
+	public boolean isVisible() {
+		return this.visible;
+	}
+	
+>>>>>>> b14a345c49149cafaeeac6af9732ed03e4747cd9
 
 }
