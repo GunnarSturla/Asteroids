@@ -21,15 +21,17 @@ public class SpaceObject {
 	// Fyrir:	ekkert
 	// Eftir: 	this.x
 	public void move() {
-		double dx = this.speed * Math.cos(Math.toRadians(this.direction));
-		double dy = this.speed * Math.sin(Math.toRadians(this.direction));
-		
-		this.x = this.x + dx;
-		this.y = this.y + dy;
-		if(this.x < -1.15 || this.x > 1.15) this.x *= -1;
-		if(this.y < -1.15 || this.y > 1.15) this.y *= -1;
+		if(this.visible) {
+			double dx = this.speed * Math.cos(Math.toRadians(this.direction));
+			double dy = this.speed * Math.sin(Math.toRadians(this.direction));
+			
+			this.x = this.x + dx;
+			this.y = this.y + dy;
+			if(this.x < -1.15 || this.x > 1.15) this.x *= -1;
+			if(this.y < -1.15 || this.y > 1.15) this.y *= -1;
+		}
 	}
-
+	
 	public boolean intersects(SpaceObject b) 
 	{
 		return false;

@@ -23,18 +23,17 @@ public class asteroid extends SpaceObject {
 			StdDraw.circle(super.x, super.y, r);
 		}
 	}
-	public void move() {
-		super.move();
-	}
+
 
 	public void destroy() {
 		this.hide();
+		
 	}
 
 
 	
 	public static void main(String[] args) {
-		int timetilldeath = 200;
+		int timetilldeath = 100;
 		StdDraw.setXscale(-1, 1);
 		StdDraw.setYscale(-1, 1);
 		asteroid a1 = new asteroid(0.5,0.5,1);
@@ -42,6 +41,7 @@ public class asteroid extends SpaceObject {
 		asteroid a3 = new asteroid(0.0,0.0,3);
 		while(true) {
 			StdDraw.clear();
+			for
 			a1.move();
 			a2.move();
 			a3.move();
@@ -49,11 +49,11 @@ public class asteroid extends SpaceObject {
 			a2.draw();
 			a3.draw();
 			StdDraw.show(20);
-			/*if(timetilldeath == 0) {
-				a1.destroy();
+			if(timetilldeath == 0) {
+				a3.destroy();
 			} else {
 				timetilldeath--;
-			}*/
+			}
 			
 		}
 		
