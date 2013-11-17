@@ -1,14 +1,16 @@
 public class SpaceObject {
-	public double x, y;
+	public double x, y, w, h;
 	public double speed;
 	public int direction, rotation; 
 	private boolean visible;
 	
 	// Notkun:	a = new SpaceObject(x, y, 0.01, 90, 0);
 	// 
-	public SpaceObject(double x, double y,double spd, int dir, int rot) {
+	public SpaceObject(double x, double y, double w, double h, double spd, int dir, int rot) {
 		this.x = x;
 		this.y = y;
+		this.w = w;
+		this.h = h;
 		this.visible = true;
 		this.speed = spd;
 		this.direction = dir;
@@ -32,19 +34,30 @@ public class SpaceObject {
 		}
 	}
 	
+	// Notkun: c = s.intersects(o)
+	// Fyrir:  ekkert
+	// Eftir:  c er true ef s og o skarast
+	public boolean intersects(SpaceObject o)
+	{
+		Rectangle d = this.getBoundingBox();
+		return o.intersects(d);
+	}
+	// Notkun: c = s.intersects(o)
+	// Fyrir:  ekkert
+	// Eftir:  c er true ef s og o skarast
+	public boolean intersects(Rectangle o)
+	{
+		Rectangle d = this.getBoundingBox();
+		return o.intersects(d);
+	}
 	// Notkun: r = s.getBoundingBox()
 	// Fyrir:  ekkert
 	// Eftir:  r er minnsti ferhyrningur sem passar utan um s
-	/*public Rectangle getBoundingBox()
+	public Rectangle getBoundingBox()
 	{
-		return new Rectangle(x, y, r*2, r*2);
-	}*/
-	
-	public boolean intersects(SpaceObject b) 
-	{
-		return false;
+		return new Rectangle(x, y, w, h);
 	}
-	
+
 	public void hide() {
 		this.visible = false;
 	}

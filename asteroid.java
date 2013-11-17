@@ -8,26 +8,26 @@ public class asteroid extends SpaceObject {
 	// Fyrir:	0 < gen <= 3
 	// Eftir:	a er asteriod af gen kynslóð með staðsetninguna x,y og hreyfist í handahófskennda átt
 	public asteroid(double x, double y, int gen) {
-		super(x,y,0.01/(gen*gen),(int)(Math.random()*360 +0.5),(int)(Math.random()*360 +0.5));
+		//SpaceObject(double x, double y, double width, double height, double spd, int dir, int rot)
+		super(x,y,(gen*0.08), (gen*0.08), 0.01/(gen*gen), (int)(Math.random()*360 +0.5), (int)(Math.random()*360 +0.5));
 		generation = gen;
 		rotspd = 3/generation;
 		
-		shape = (int)(Math.random()*4 +0.5); // ATH! breyta eftir því hve margar teinkingar við fáum
+		shape = (int)(Math.random()*4); // ATH! breyta eftir því hve margar teinkingar við fáum
 		
 
 	}
 	
 	public void draw() {
 		if(this.isVisible()) {
-			double r =  this.generation*0.05;
+			double r =  this.h / 2;
 			
-			StdDraw.picture(x,y,"rock-3-"+this.shape+".png",this.generation*0.10,this.generation*0.10,(double)this.rotation);
+			StdDraw.picture(x,y,"grjot-3-"+this.shape+".png",this.generation*0.10,this.generation*0.10,(double)this.rotation);
 			
 			this.rotation = this.rotation + rotspd;
-			//StdDraw.circle(super.x, super.y, r);
+			StdDraw.circle(super.x, super.y, r);
 		}
 	}
-
 	
 	public void destroy(SimpleVector a, int i) {
 		if(this.generation > 1) {
@@ -47,21 +47,35 @@ public class asteroid extends SpaceObject {
 		StdDraw.setYscale(-1, 1);
 	
 		SimpleVector a = new SimpleVector();
-			a.add(new asteroid(0.5,0.5,1));
-			a.add(new asteroid(0.0,0.0,2));
-			a.add(new asteroid(0.0,0.0,3));
+			a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,1));
+			a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,2));
+			a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,3));
+			a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,1));
+			a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,2));
+			a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,3));
 			
 		
 		while(true) {
 			StdDraw.clear();
 
-			asteroid tmp; // temo breyta sem geymir asteriod-ið sem á að færa og teikna
-			
+			asteroid tmp, tmp2;
 			// Hreyfir öll stökin í a vectornum
 			for(int i = 0; i < a.size() ;i++)
 			{
 				tmp = (asteroid) a.get(i);
 				tmp.move();
+			}
+			
+			//Tékkar á árekstrum
+			for(int i = 0; i < a.size()-1; i++) {
+				for(int j = i+1; j < a.size(); j++) {
+					tmp = (asteroid)a.get(i); // temo breyta sem geymir asteriod-ið sem á að færa og teikna
+					tmp2 = (asteroid)a.get(j);
+					
+					if(tmp.intersects(tmp2)) {
+						tmp.destroy(a,i);	
+					}
+				}
 			}
 			
 			// Teiknar öll stökin í a vectornum
@@ -72,13 +86,13 @@ public class asteroid extends SpaceObject {
 			}
 
 			// Test sem sprengir asteroid
-			if(timetilldeath == 0) {
+			/*if(timetilldeath == 0) {
 				tmp = (asteroid) a.get(2);
 				tmp.destroy(a,2);
 				timetilldeath = 200;
 			} else {
 				timetilldeath--;
-			}
+			}*/
 			
 			StdDraw.show(20);
 			
