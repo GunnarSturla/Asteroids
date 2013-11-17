@@ -1,6 +1,11 @@
 public class SpaceObject {
 	public double x, y;
+<<<<<<< HEAD
 	public double speed, direction, rotation; 
+=======
+	public double speed;
+	public int direction, rotation; 
+>>>>>>> e095e888c374560a6ecb06f1bfdf22c1e784d494
 	private boolean visible;
 	
 	// Notkun:	a = new SpaceObject(x, y, 0.01, 90, 0);
@@ -18,7 +23,7 @@ public class SpaceObject {
 	
 	// Notkun:	a.move();
 	// Fyrir:	ekkert
-	// Eftir: 	this.x
+	// Eftir: 	a fær nýja staðsetningu, hreyfist samkvæmt speed í direction átt, birtist hinum megin ef hann fer út fyrir rammann.
 	public void move() {
 		if(this.visible) {
 			double dx = this.speed * Math.cos(Math.toRadians(this.direction));
@@ -31,6 +36,14 @@ public class SpaceObject {
 		}
 	}
 	
+	// Notkun: r = s.getBoundingBox()
+	// Fyrir:  ekkert
+	// Eftir:  r er minnsti ferhyrningur sem passar utan um s
+	/*public Rectangle getBoundingBox()
+	{
+		return new Rectangle(x, y, r*2, r*2);
+	}*/
+	
 	public boolean intersects(SpaceObject b) 
 	{
 		return false;
@@ -41,5 +54,8 @@ public class SpaceObject {
 	}
 	public boolean isVisible() {
 		return this.visible;
+	}
+	public int getDirection() {
+		return this.direction;
 	}
 }
