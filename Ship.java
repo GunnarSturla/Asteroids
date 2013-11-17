@@ -1,21 +1,21 @@
 public class Ship extends SpaceObject
 {
-	private double x, y;
+	private double x, y, direction;
 	private final double w, h;
-	private int lives, direction;
+	private double lives;
 	private boolean alive; 
 	
-	public Ship (double x, double y, double, w, double h, int lives, int direction, boolean alive)
+	public Ship (double x, double y, String a, double w, double h, double direction)
 	{
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
-		this.lives = lives;
+		//this.lives = lives;
 		this.direction = direction;
-		this.alive = alive;
+		//this.alive = alive;
 	}
-	public boolean intersects(asteroid o)
+	/*public boolean intersects(asteroid o)
 	{
    		Rectangle d = this.getBoundingBox();
     	return o.intersects(d);
@@ -69,6 +69,14 @@ public class Ship extends SpaceObject
     {
     	this.lives = l;
     }
+    public boolean isAlive()
+    {
+        return this.alive;
+    }
+    public void getImage()
+    {
+
+    }*/
 
 
 }

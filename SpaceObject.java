@@ -1,7 +1,6 @@
 public class SpaceObject {
 	public double x, y;
-	public double speed;
-	private int direction, rotation; 
+	public double speed, direction, rotation; 
 	private boolean visible;
 	
 	// Notkun:	a = new SpaceObject(x, y, 0.01, 90, 0);

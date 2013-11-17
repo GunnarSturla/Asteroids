@@ -7,7 +7,7 @@ public class AsteroidsSuperHot
 		//StdDraw.rectangle(0.5, 0.5, 0.02, 0.04);
 		double rx = 0.0, ry = 0.0;
         double vx = 0.001, vy = 0.0023;
-        int degrees = 0;
+        int degrees = 90;
         double c1x = 0.0;
         double c1y = 0.0;
         double c2x = 0.1;
@@ -36,8 +36,8 @@ public class AsteroidsSuperHot
             if (1 <= Math.abs(c5y)) {c5y *= -1;}
         	if (StdDraw.isKeyPressed(38)||StdDraw.isKeyPressed(87))
             {
-                acx += 0.01*Math.sin(Math.toRadians(degrees));
-                acy += 0.01*Math.cos(Math.toRadians(degrees));   
+                acx += 0.01*Math.cos(Math.toRadians(degrees));
+                acy += 0.01*Math.sin(Math.toRadians(degrees));   
                 if (acx < 0)  acx = acx%-0.03;
                 if (acy < 0)  acy = acy%-0.03;
                 if (acx > 0)  acx = acx%0.03;
@@ -53,12 +53,12 @@ public class AsteroidsSuperHot
             }*/
             if (StdDraw.isKeyPressed(37)||StdDraw.isKeyPressed(83))
             {
-                degrees--;
+                degrees++;
                 degrees = degrees%360;
             }
             if (StdDraw.isKeyPressed(39)||StdDraw.isKeyPressed(68))
             {
-                degrees++;
+                degrees--;
                 degrees = degrees%360;
             }
         	c1x += vx;
@@ -74,7 +74,7 @@ public class AsteroidsSuperHot
             ry += acy;
             rx +=acx;
         	StdDraw.clear();
-        	StdDraw.rectangle(rx, ry, 0.02, 0.04);
+        	StdDraw.picture(rx, ry, "skip.jpg", 0.1, 0.2, degrees);
         	StdDraw.circle(c1x, c1y, 0.1);
 			StdDraw.circle(c2x, c2y, 0.05);
 			StdDraw.circle(c3x, c3y, 0.05);
