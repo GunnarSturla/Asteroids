@@ -23,7 +23,6 @@ public class SimpleVector {
   // Notkun: v.add(x)
   // Fyrir:  ekkert
   // Eftir:  x er bætt aftast við í v
-
   public void add(Object o) {
     if (size >= a.length) {
       int newLength = (int) Math.ceil(1.25*a.length);
@@ -35,6 +34,16 @@ public class SimpleVector {
     }
     a[size] = o;
     size++;
+  }
+  
+  // Notkun: v.replace(i,x)
+  // Fyrir:  ekkert
+  // Eftir:  x er skrifað yfir það sem er í sæti i í v
+  public void replace(int i, Object o) {
+    if(i >= size) {
+      throw new ArrayIndexOutOfBoundsException(i);
+    }
+    a[i] = o;
   }
 
   // Notkun: x = v.get(i)

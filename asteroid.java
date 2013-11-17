@@ -25,9 +25,11 @@ public class asteroid extends SpaceObject {
 	}
 
 
-	public void destroy() {
-		this.hide();
-		
+	public void destroy(SimpleVector a, int i) {
+		if(this.generation > 1) {
+			a.replace(i, new asteroid(this.x, this.y, this.generation-1));
+			a.add(new asteroid(this.x, this.y, this.generation-1));
+		}
 	}
 
 
@@ -36,43 +38,17 @@ public class asteroid extends SpaceObject {
 		int timetilldeath = 100;
 		StdDraw.setXscale(-1, 1);
 		StdDraw.setYscale(-1, 1);
-//		asteroid a1 = new asteroid(0.5,0.5,1);
-//		asteroid a2 = new asteroid(0.0,0.0,2);
-//		asteroid a3 = new asteroid(0.0,0.0,3);
-		
+	
 		SimpleVector a = new SimpleVector();
 			a.add(new asteroid(0.5,0.5,1));
 			a.add(new asteroid(0.0,0.0,2));
 			a.add(new asteroid(0.0,0.0,3));
 			
-	/*	asteroid a[] = new asteroid[3];
-		a[0] = new asteroid(0.5,0.5,1);
-		a[1] = new asteroid(0.0,0.0,2);
-		a[2] = new asteroid(0.0,0.0,3);*/
 		
 		while(true) {
 			StdDraw.clear();
-	/*		a1.move();
-			a2.move();
-			a3.move();
-			a1.draw();
-			a2.draw();
-			a3.draw();
-			StdDraw.show(20);
-			if(timetilldeath == 0) {
-				a3.destroy();
-			} else {
-				timetilldeath--;
-			}*/
-			/*for(int i = 0; i < a.length;i++)
-			{
-				a[i].move();
-			}
-			for(int i = 0; i < a.length;i++)
-			{
-				a[i].draw();
-			}*/
-			asteroid tmp;
+
+			asteroid tmp; // temo breyta sem geymir asteriod-ið sem á að færa og teikna
 			for(int i = 0; i < a.size() ;i++)
 			{
 				tmp = (asteroid) a.get(i);
@@ -82,6 +58,14 @@ public class asteroid extends SpaceObject {
 			{
 				tmp = (asteroid)a.get(i);
 				tmp.draw();
+			}
+
+			if(timetilldeath == 0) {
+				tmp = (asteroid) a.get(2);
+				tmp.destroy(a,2);
+				timetilldeath = 200;
+			} else {
+				timetilldeath--;
 			}
 			
 			StdDraw.show(20);
