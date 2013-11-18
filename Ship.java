@@ -1,4 +1,4 @@
-public class Ship extends SpaceObject
+public class Ship //extends SpaceObject
 {
 	private double x, y, direction, speed, rotation;
 	private final double w, h;
@@ -49,10 +49,9 @@ public class Ship extends SpaceObject
     {
     	return this.y;
     }
-    public void draw() {
-        if(this.isVisible()) {
-            StdDraw.picture(this.getX(), this.getY(), "s.png", this.getHeight(), this.getWidth(), this.getRotation());
-        }
+    public void draw()
+    {
+        StdDraw.picture(this.x, this.y, "s.png", this.h, this.w, this.rotation);
     }
 	public double getWidth()
     {
@@ -97,6 +96,18 @@ public class Ship extends SpaceObject
     }
     public void getImage()
     {
+
+    }
+    public static void main(String[] args)
+    {
+        Ship s = new Ship (0.0, 0.0, 0.0, 0.1, 0.2, 90.0, 0.0);
+        StdDraw.setXscale(-1.0, 1.0);
+        StdDraw.setYscale(-1.0, 1.0);
+       // s.draw();
+      
+
+
+
 
     }
 
