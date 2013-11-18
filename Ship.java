@@ -1,7 +1,6 @@
-public class Ship //extends SpaceObject
+public class Ship extends SpaceObject
 {
-<<<<<<< HEAD
-	private double x, y, direction, speed, rotation;
+	public double x, y, direction, speed, rotation;
 	private final double w, h;
 	private double lives;
 	private boolean alive;
@@ -16,41 +15,41 @@ public class Ship //extends SpaceObject
         this.speed = speed;
         this.rotation = rotation;
 		this.direction = direction;
-=======
-	private int shotInterval, jumpInterval, maxspeed;
+    }
 
-	public Ship(double x, double y, double spd, double direction, int rot)
-	{
+	//private int shotInterval, jumpInterval, maxspeed;
+
+	//public Ship(double x, double y, double spd, double direction, int rot)
+	//{
 		// SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot)
-		super(x, y, 0.05, 0.08, spd, direction, rot);
+	//	super(x, y, 0.05, 0.08, spd, direction, rot);
 
-	}
+	//}
 	
-	public void draw() {
-			
-			//StdDraw.picture(x,y,"grjot-3-"+this.shape+".png",this.generation*0.10,this.generation*0.10,(double)this.rotation);
-			
-			//(double x, double y, double halfWidth, double halfHeight)
-			StdDraw.rectangle(super.x, super.y, (super.w / 2), (super.h/2));
-	}
+	//public void turn(int i) {
+	//	this.direction = (this.direction + i*5)%360;
+	//}
 	
-	public void turn(int i) {
-		this.direction = (this.direction + i*5)%360;
-	}
+	//public void accelerate() {
+	//	if(this.speed < maxspeed) this.speed += 0.01;
+	//}
 	
-	public void accelerate() {
-		if(this.speed < maxspeed) this.speed += 0.01;
-	}
+	//public void shoot() {
 	
-	public void shoot() {
-	
-	}
-	/*public boolean intersects(asteroid o)
-	{
-   		Rectangle d = this.getBoundingBox();
-    	return o.intersects(d);
->>>>>>> 702772aa5862a14c67cbbbab2a0c3993b4123652
-	}
+	//}
+//	public boolean intersects(asteroid o)
+//	{
+//   		Rectangle d = this.getBoundingBox();
+//    	return o.intersects(d);
+//	}
+    public double getSpeed()
+    {
+        return this.speed;
+    }
+    public void setSpeed(double k)
+    {
+        this.speed += k;
+    }
     public void shipLeft()
     {
         this.rotation++;
@@ -58,10 +57,6 @@ public class Ship //extends SpaceObject
     public void shipRight()
     {
         this.rotation--;
-    }
-    public void shipForward()
-    {
-        this.speed +=0.01;
     }
 	//public boolean intersects(asteroid o)
 	//{
@@ -72,29 +67,36 @@ public class Ship //extends SpaceObject
     {
     	return this.x;
     }
-    public void changeX(double k)
+    public void setX()
     {
-    	this.x += k;
-    }
-     public void changeY(double k)
-    {
-    	this.y += k;
-    }
+        return this.x;
+        //if(this.x < -1.15 || this.x > 1.15) this.x *= -1;
+    } 
+   // public void changeX(double k)
+    //{
+    //	this.x += k;
+    //}
+   //  public void changeY(double k)
+    //{
+    //	this.y += k;
+    //}
     public double getY()
     {
     	return this.y;
     }
+     public void setY(double k)
+    {
+        this.y += k;
+        //if(this.y < -1.15 || this.y > 1.15) this.y *= -1;
+    }
     public void draw()
     {
-        StdDraw.picture(this.x, this.y, "s.png", this.h, this.w, this.rotation);
+        StdDraw.picture(this.getX(), this.getY(), "S.png", this.getHeight(), this.getWidth(), this.getRotation());
     }
 	public double getWidth()
     {
     	return this.w;
     }
-    // Notkun: c = s.GetHeight()
-    // Fyrir: ekkert
-    // Eftir: c = this.height
     public double getHeight()
     {
         return this.h;
@@ -103,20 +105,6 @@ public class Ship //extends SpaceObject
     {
         return this.rotation;
     }
-    // Notkun: c = s.SetWidth()
-    // Fyrir: ekkert
-    // Eftir: c = this.width
-    //public void setWidth(double k)
-    //{
-    //    this.w = k;
-    //}
-    // Notkun: c = s.SetHeight()
-    // Fyrir: ekkert
-    // Eftir: c = this.height
-    //public void setHeight(double k)
-    //{
-    //    this.h = k;
-    //}
     public double getLives()
     {
     	return this.lives;
@@ -132,23 +120,16 @@ public class Ship //extends SpaceObject
     public void getImage()
     {
 
-<<<<<<< HEAD
     }
-    public static void main(String[] args)
+    /*public static void main(String[] args)
     {
         Ship s = new Ship (0.0, 0.0, 0.0, 0.1, 0.2, 90.0, 0.0);
         StdDraw.setXscale(-1.0, 1.0);
         StdDraw.setYscale(-1.0, 1.0);
        // s.draw();
-      
-
-
-
-
-=======
     }*/
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
     	StdDraw.setCanvasSize(800,800);
 		StdDraw.setXscale(-1, 1);
 		StdDraw.setYscale(-1, 1);
@@ -174,8 +155,7 @@ public class Ship //extends SpaceObject
 			StdDraw.show(20);
 			
 		}
->>>>>>> 702772aa5862a14c67cbbbab2a0c3993b4123652
-    }
+    }*/
 
 
 }
