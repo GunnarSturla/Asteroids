@@ -14,7 +14,11 @@ public class Bullet extends SpaceObject {
 	}
 	
 	/*public Rectangle getBoundinBox {
+<<<<<<< HEAD
+    	return new Rectangle(x - (0.5*dx), y - (0.5*dy), dx, dy);
+=======
     	return new Rectangle(x - (0.5*dx), y - (0.5*dy), dx, );
+>>>>>>> 702772aa5862a14c67cbbbab2a0c3993b4123652
 	}*/
 	
 	public static void main(String[] args) {

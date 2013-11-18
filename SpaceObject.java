@@ -1,12 +1,13 @@
 public class SpaceObject {
 	public double x, y, w, h;
-	public double speed, direction;
-	public int rotation; 
+	public double speed, direction, rotation;
 	private boolean visible;
 	
 	// Notkun:	a = new SpaceObject(x, y, 0.01, 90, 0);
 	// 
-	public SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot) {
+	
+	public SpaceObject (double x, double y, double w, double h, double spd, double dir, double rot) {
+
 		this.x = x;
 		this.y = y;
 		this.w = w;
