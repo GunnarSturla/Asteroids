@@ -66,7 +66,7 @@ public class Game
 				for(int j = 0; j < noBullets; j++) {
 					
 					if(tmp.intersects(b[j])) {
-						tmp.destroy(a,i);
+						if(b[j].isVisible()) tmp.destroy(a,i);
 						b[j].hide();	
 					}
 				}

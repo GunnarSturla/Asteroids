@@ -2,29 +2,29 @@ public class Ship extends SpaceObject
 {
 	private int shotInterval, jumpInterval;
 	private double maxspeed;
+	private boolean accel = false;
 
 
 	public Ship(double x, double y, double spd, double direction, int rot)
 	{
 		// SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot)
-		super(x, y, 0.114, 0.1, spd, direction, rot);
+		super(x, y, 0.1, 0.1, spd, direction, rot);
 	maxspeed = 0.05;
 	}
 	
 	public void draw() {
-			
-			StdDraw.picture(x,y,"grafik/ship1.png",super.w,super.h,(double)this.rotation);
-			
+			if(this.accel) StdDraw.picture(x,y,"grafik/Fire2.png",super.w*2.04,super.h*2,(double)this.rotation);
+			StdDraw.picture(x,y,"grafik/ship1.png",super.w*2.04,super.h*2,(double)this.rotation);
 			//(double x, double y, double halfWidth, double halfHeight)
 			//StdDraw.rectangle(super.x, super.y, (super.w / 2), (super.h/2));
-			
+			this.accel = false;
 			shotInterval--;
 			jumpInterval--;
 			this.speed = this.speed * 0.995;
 	}
 	
 	public void turn(int i) {
-		this.rotation = (this.rotation + i*5);
+		this.rotation = (this.rotation + i*7);
 	}
 	
 	public void accelerate() {
@@ -44,6 +44,7 @@ public class Ship extends SpaceObject
 			this.direction = Math.toDegrees(Math.acos(dx/speed));
 			
 			this.speed = Math.min(maxspeed,this.speed);
+			this.accel = true;
 		
 		
 	}
