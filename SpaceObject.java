@@ -24,8 +24,8 @@ public class SpaceObject {
 	// Eftir: 	a fær nýja staðsetningu, hreyfist samkvæmt speed í direction átt, birtist hinum megin ef hann fer út fyrir rammann.
 	public void move() {
 		if(this.visible) {
-			double dx = this.speed * Math.cos(Math.toRadians(this.direction));
-			double dy = this.speed * Math.sin(Math.toRadians(this.direction));
+			double dx = this.speed * Math.cos(Math.toRadians(this.direction%360));
+			double dy = this.speed * Math.sin(Math.toRadians(this.direction%360));
 
 			this.x = this.x + dx;
 			this.y = this.y + dy;

@@ -13,7 +13,7 @@ public class asteroid extends SpaceObject {
 		generation = gen;
 		rotspd = 3/generation;
 		
-		shape = (int)(Math.random()*4); // ATH! breyta eftir því hve margar teinkingar við fáum
+		shape = (int)(Math.random()*2); // ATH! breyta eftir því hve margar teinkingar við fáum
 		
 
 	}
@@ -22,7 +22,7 @@ public class asteroid extends SpaceObject {
 		if(this.isVisible()) {
 			double r =  this.h / 2;
 			
-			StdDraw.picture(x,y,"grjot-3-"+this.shape+".png",this.generation*0.10,this.generation*0.10,(double)this.rotation);
+			StdDraw.picture(x,y,"grafik/Rock-"+shape+"-"+generation+".png",this.generation*0.10,this.generation*0.10,(double)this.rotation);
 			
 			this.rotation = this.rotation + rotspd;
 			//StdDraw.circle(super.x, super.y, r);
