@@ -8,8 +8,8 @@ public class asteroid extends SpaceObject {
 	// Fyrir:	0 < gen <= 3
 	// Eftir:	a er asteriod af gen kynslóð með staðsetninguna x,y og hreyfist í handahófskennda átt
 	public asteroid(double x, double y, int gen) {
-		//SpaceObject(double x, double y, double width, double height, double spd, int dir, int rot)
-		super(x,y,(gen*0.08), (gen*0.08), 0.01/(gen*gen), (int)(Math.random()*360 +0.5), (int)(Math.random()*360 +0.5));
+		//SpaceObject(double x, double y, double width, double height, double spd, double dir, int rot)
+		super(x,y,(gen*0.08), (gen*0.08), 0.01/(gen*gen), (Math.random()*360 +0.5), (int)(Math.random()*360 +0.5));
 		generation = gen;
 		rotspd = 3/generation;
 		
@@ -25,7 +25,7 @@ public class asteroid extends SpaceObject {
 			StdDraw.picture(x,y,"grjot-3-"+this.shape+".png",this.generation*0.10,this.generation*0.10,(double)this.rotation);
 			
 			this.rotation = this.rotation + rotspd;
-			StdDraw.circle(super.x, super.y, r);
+			//StdDraw.circle(super.x, super.y, r);
 		}
 	}
 	
@@ -41,7 +41,7 @@ public class asteroid extends SpaceObject {
 
 	
 	public static void main(String[] args) {
-		int timetilldeath = 100;
+		int timetilldeath = 200;
 		StdDraw.setCanvasSize(800,800);
 		StdDraw.setXscale(-1, 1);
 		StdDraw.setYscale(-1, 1);
@@ -87,9 +87,10 @@ public class asteroid extends SpaceObject {
 
 			// Test sem sprengir asteroid
 			/*if(timetilldeath == 0) {
-				tmp = (asteroid) a.get(2);
-				tmp.destroy(a,2);
-				timetilldeath = 200;
+				int whodies = (int)Math.random()*a.size();
+				tmp = (asteroid) a.get(whodies);
+				tmp.destroy(a,whodies);
+				timetilldeath = 100;
 			} else {
 				timetilldeath--;
 			}*/

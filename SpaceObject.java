@@ -1,12 +1,12 @@
 public class SpaceObject {
 	public double x, y, w, h;
-	public double speed;
-	public int direction, rotation; 
+	public double speed, direction;
+	public int rotation; 
 	private boolean visible;
 	
 	// Notkun:	a = new SpaceObject(x, y, 0.01, 90, 0);
 	// 
-	public SpaceObject(double x, double y, double w, double h, double spd, int dir, int rot) {
+	public SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot) {
 		this.x = x;
 		this.y = y;
 		this.w = w;
@@ -26,7 +26,7 @@ public class SpaceObject {
 		if(this.visible) {
 			double dx = this.speed * Math.cos(Math.toRadians(this.direction));
 			double dy = this.speed * Math.sin(Math.toRadians(this.direction));
-			
+
 			this.x = this.x + dx;
 			this.y = this.y + dy;
 			if(this.x < -1.15 || this.x > 1.15) this.x *= -1;
@@ -64,7 +64,7 @@ public class SpaceObject {
 	public boolean isVisible() {
 		return this.visible;
 	}
-	public int getDirection() {
+	public double getDirection() {
 		return this.direction;
 	}
 }
