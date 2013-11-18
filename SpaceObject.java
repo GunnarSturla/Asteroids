@@ -1,16 +1,29 @@
 public class SpaceObject {
 	public double x, y, w, h;
+<<<<<<< HEAD
 	public double speed, direction, rotation;
+=======
+	public double speed, direction;
+	public int rotation; 
+>>>>>>> 702772aa5862a14c67cbbbab2a0c3993b4123652
 	private boolean visible;
 	
 	// Notkun:	a = new SpaceObject(x, y, 0.01, 90, 0);
 	// 
+<<<<<<< HEAD
 	public SpaceObject(double x, double y, double w, double h, double spd, double dir, double rot) {
+=======
+	public SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot) {
+>>>>>>> 702772aa5862a14c67cbbbab2a0c3993b4123652
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
+<<<<<<< HEAD
 		//this.visible = true;
+=======
+		this.visible = true;
+>>>>>>> 702772aa5862a14c67cbbbab2a0c3993b4123652
 		this.speed = spd;
 		this.direction = dir;
 		this.rotation = rot;
@@ -25,7 +38,7 @@ public class SpaceObject {
 		if(this.visible) {
 			double dx = this.speed * Math.cos(Math.toRadians(this.direction));
 			double dy = this.speed * Math.sin(Math.toRadians(this.direction));
-			
+
 			this.x = this.x + dx;
 			this.y = this.y + dy;
 			if(this.x < -1.15 || this.x > 1.15) this.x *= -1;
@@ -33,19 +46,30 @@ public class SpaceObject {
 		}
 	}
 	
+	// Notkun: c = s.intersects(o)
+	// Fyrir:  ekkert
+	// Eftir:  c er true ef s og o skarast
+	public boolean intersects(SpaceObject o)
+	{
+		Rectangle d = this.getBoundingBox();
+		return o.intersects(d);
+	}
+	// Notkun: c = s.intersects(o)
+	// Fyrir:  ekkert
+	// Eftir:  c er true ef s og o skarast
+	public boolean intersects(Rectangle o)
+	{
+		Rectangle d = this.getBoundingBox();
+		return o.intersects(d);
+	}
 	// Notkun: r = s.getBoundingBox()
 	// Fyrir:  ekkert
 	// Eftir:  r er minnsti ferhyrningur sem passar utan um s
-	/*public Rectangle getBoundingBox()
+	public Rectangle getBoundingBox()
 	{
-		return new Rectangle(x, y, r*2, r*2);
-	}*/
-	
-	public boolean intersects(SpaceObject b) 
-	{
-		return false;
+		return new Rectangle(x, y, w, h);
 	}
-	
+
 	public void hide() {
 		this.visible = false;
 	}

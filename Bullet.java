@@ -1,23 +1,24 @@
 public class Bullet extends SpaceObject {
-	private int timeLeft = 200;
-	private double dx, dy;
+	private int timeLeft = 1000; // Muna að stilla hraðann!
 
 	public Bullet(double x, double y, int dir) {
-		super(x, y, 0.03, dir, dir);
+		// SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot)
+		super(x, y, 0.05 * Math.cos(Math.toRadians(dir)), 0.05 * Math.sin(Math.toRadians(dir)), 0.001, (double)dir, dir);
 	}
 	
 	public void draw() {
 		if(timeLeft > 0) {
-			dx = x + 0.01 * Math.cos(Math.toRadians(this.getDirection()));
-			dy = y + 0.01 * Math.sin(Math.toRadians(this.getDirection()));
-
-			StdDraw.line(x,y,dx,dy);
+			StdDraw.line(this.x, this.y, this.x+this.w, this.y+this.h);
 			timeLeft--;
 		}
 	}
 	
 	/*public Rectangle getBoundinBox {
+<<<<<<< HEAD
     	return new Rectangle(x - (0.5*dx), y - (0.5*dy), dx, dy);
+=======
+    	return new Rectangle(x - (0.5*dx), y - (0.5*dy), dx, );
+>>>>>>> 702772aa5862a14c67cbbbab2a0c3993b4123652
 	}*/
 	
 	public static void main(String[] args) {
@@ -25,17 +26,32 @@ public class Bullet extends SpaceObject {
 		StdDraw.setXscale(-1, 1);
 		StdDraw.setYscale(-1, 1);
 		
-		Bullet b = new Bullet(0.0,0.0,45);
-			
+		Bullet b[] = new Bullet[25];
+			b[0] = new Bullet(0.0,0.0,(int)(Math.random()*360));
+		int noBullets = 1;
+		int nextSeat = 1;
+		int interval = 0;
 		
 		while(true) {
 			StdDraw.clear();
-
-			b.move();
-			b.draw();
+			if(interval == 50) {
+				b[nextSeat] = new Bullet(0.0,0.0,(int)(Math.random()*360));
+				if(noBullets < 25) noBullets++;
+				nextSeat = (nextSeat + 1) % 25;
+				interval = 0;
+			}
+		//	b[0].move();
+		//	b[0].draw();
+		
+			for(int i = 0; i < noBullets; i++)
+			{
+				b[i].move();
+				b[i].draw();
+			}
+			
+			interval++;
 			
 			StdDraw.show(20);
-			
 		}
 	}
 } /*
