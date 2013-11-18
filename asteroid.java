@@ -9,7 +9,7 @@ public class asteroid extends SpaceObject {
 	// Eftir:	a er asteriod af gen kynslóð með staðsetninguna x,y og hreyfist í handahófskennda átt
 	public asteroid(double x, double y, int gen) {
 		//SpaceObject(double x, double y, double width, double height, double spd, double dir, int rot)
-		super(x,y,(gen*0.08), (gen*0.08), 0.01/(gen*gen), (Math.random()*360 +0.5), (int)(Math.random()*360 +0.5));
+		super(x,y,(gen*0.08), (gen*0.08), 0.05/(gen), (Math.random()*360 +0.5), (int)(Math.random()*360 +0.5));
 		generation = gen;
 		rotspd = 3/generation;
 		

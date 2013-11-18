@@ -60,6 +60,8 @@ public class SpaceObject {
 
 	public void hide() {
 		this.visible = false;
+		this.x = -5;
+		this.y = -5;
 	}
 	public boolean isVisible() {
 		return this.visible;
