@@ -51,7 +51,7 @@ public class AsteroidsSuperHot
                     acy -=0.01;   
                }
             }*/
-            if (StdDraw.isKeyPressed(37)||StdDraw.isKeyPressed(83))
+            if (StdDraw.isKeyPressed(37)||StdDraw.isKeyPressed(65))
             {
                 degrees++;
                 degrees = degrees%360;

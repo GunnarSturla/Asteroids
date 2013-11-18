@@ -1,19 +1,16 @@
 public class SpaceObject {
-	public double x, y;
-<<<<<<< HEAD
-	public double speed, direction, rotation; 
-=======
-	public double speed;
-	public int direction, rotation; 
->>>>>>> e095e888c374560a6ecb06f1bfdf22c1e784d494
+	public double x, y, w, h;
+	public double speed, direction, rotation;
 	private boolean visible;
 	
 	// Notkun:	a = new SpaceObject(x, y, 0.01, 90, 0);
 	// 
-	public SpaceObject(double x, double y,double spd, int dir, int rot) {
+	public SpaceObject(double x, double y, double w, double h, double spd, double dir, double rot) {
 		this.x = x;
 		this.y = y;
-		this.visible = true;
+		this.w = w;
+		this.h = h;
+		//this.visible = true;
 		this.speed = spd;
 		this.direction = dir;
 		this.rotation = rot;
@@ -55,7 +52,7 @@ public class SpaceObject {
 	public boolean isVisible() {
 		return this.visible;
 	}
-	public int getDirection() {
+	public double getDirection() {
 		return this.direction;
 	}
 }

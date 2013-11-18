@@ -16,9 +16,9 @@ public class Bullet extends SpaceObject {
 		}
 	}
 	
-	public Rectangle getBoundinBox {
+	/*public Rectangle getBoundinBox {
     	return new Rectangle(x - (0.5*dx), y - (0.5*dy), dx, dy);
-	}
+	}*/
 	
 	public static void main(String[] args) {
 
