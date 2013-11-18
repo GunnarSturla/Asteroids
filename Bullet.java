@@ -1,9 +1,9 @@
 public class Bullet extends SpaceObject {
-	private int timeLeft = 1000; // Muna að stilla hraðann!
+	private int timeLeft = 50; // Muna að stilla hraðann!
 
 	public Bullet(double x, double y, int dir) {
 		// SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot)
-		super(x, y, 0.05 * Math.cos(Math.toRadians(dir)), 0.05 * Math.sin(Math.toRadians(dir)), 0.001, (double)dir, dir);
+		super(x, y, 0.05 * Math.cos(Math.toRadians(dir)), 0.05 * Math.sin(Math.toRadians(dir)), 0.05, (double)dir, dir);
 	}
 	
 	public void draw() {
