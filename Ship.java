@@ -1,6 +1,6 @@
 public class Ship extends SpaceObject
 {
-	private int shotInterval, jumpInterval;
+	private int shotInterval, jumpInterval, immortalTime;
 	private double maxspeed;
 	private boolean accel = false;
 
@@ -9,17 +9,20 @@ public class Ship extends SpaceObject
 	{
 		// SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot)
 		super(x, y, 0.1, 0.1, spd, direction, rot);
-	maxspeed = 0.05;
+		maxspeed = 0.05;
+		immortalTime = 20;
 	}
 	
 	public void draw() {
 			if(this.accel) StdDraw.picture(x,y,"grafik/Fire2.png",super.w*2.04,super.h*2,(double)this.rotation);
 			StdDraw.picture(x,y,"grafik/ship1.png",super.w*2.04,super.h*2,(double)this.rotation);
+			//if(immortalTime > 0 && (immortalTime % 2 = 0)) StdDraw.circle(x,y,h*1.8)
 			//(double x, double y, double halfWidth, double halfHeight)
 			StdDraw.rectangle(super.x, super.y, (super.w / 2), (super.h/2));
 			this.accel = false;
 			shotInterval--;
 			jumpInterval--;
+			immortalTime--;
 			this.speed = this.speed * 0.995;
 	}
 	
@@ -58,6 +61,15 @@ public class Ship extends SpaceObject
 		return this.shotInterval;
 	}
 	
+	public boolean isImmortal()
+	{
+		return (immortalTime <= 0);
+	}
+	public void ReLaunch() {
+		this.x = 0.0;
+		this.y = 0.0;
+		this.immortalTime = 50;
+	}
     
     public static void main(String[] args) {
     	StdDraw.setCanvasSize(800,800);

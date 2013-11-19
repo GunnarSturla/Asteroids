@@ -1,5 +1,3 @@
-
-
 public class Game
 {
 	//Astroid[] a = new astroid[N];
@@ -8,6 +6,11 @@ public class Game
 		a[i] = Math.random(), Math.random(), 1;
 
 	}*/
+	public void newGame()
+	{
+
+	}
+
 	public static void main(String[] args)
 	{
 		int timetilldeath = 200;
@@ -21,8 +24,8 @@ public class Game
 		Bullet b[] = new Bullet[25];
 		int noBullets = 0;
 		int nextSeat = 0;
-		//int score = 0;
-		//int lives = 3;
+		int score = 0;
+		int lives = 3;
 		
     	//Ship(double x, double y, double spd, double direction, int rot)
     	Ship s = new Ship(0.0, 0.0, 0.0, 90.0, 90);
@@ -71,7 +74,12 @@ public class Game
     			//String scoretable = "stig" + score;
     			//StdDraw.text(-0.9, 0.9, scoretable);
 				StdDraw.clear();
-	
+				if (lives < 1)
+				{
+					menu = true;
+					// prompt - viltu byrja nýjan leik
+
+				}
 				asteroid tmp;
 				// Hreyfir öll asteroid-in í a vectornum
 				for(int i = 0; i < a.size() ;i++)
@@ -102,13 +110,14 @@ public class Game
 						{
 							if(b[j].isVisible()) tmp.destroy(a,i);
 							b[j].hide();
-							//score++;	
+							score++;	
 						}
 					}
 					if(tmp.intersects(s))
 					{
-						b[26] = new Bullet(0.0,0.0,(int)(Math.random()*360));
-						//lives--;
+						//b[26] = new Bullet(0.0,0.0,(int)(Math.random()*360));
+						//s.ReLaunch();
+						lives--;
 					}
 				}
 			
@@ -120,6 +129,7 @@ public class Game
 				}
 				StdDraw.show(20);
 			}
-		}		
+				System.out.println(score);		
+		}
 	}
 }
