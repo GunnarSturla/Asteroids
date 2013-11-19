@@ -7,7 +7,7 @@ public class Bullet extends SpaceObject {
 	}
 	
 	public void draw() {
-		if(timeLeft > 0) {
+		if(timeLeft > 0 && this.isVisible()) {
 			StdDraw.line(this.x, this.y, this.x+this.w, this.y+this.h);
 			timeLeft--;
 		}
