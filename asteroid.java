@@ -8,8 +8,8 @@ public class asteroid extends SpaceObject {
 	// Fyrir:	0 < gen <= 3
 	// Eftir:	a er asteriod af gen kynslóð með staðsetninguna x,y og hreyfist í handahófskennda átt
 	public asteroid(double x, double y, int gen) {
-		//SpaceObject(double x, double y, double width, double height, double spd, double dir, int rot)
-		super(x,y,(gen*0.08), (gen*0.08), 0.015/(gen), (Math.random()*360 +0.5), (int)(Math.random()*360 +0.5));
+		//SpaceObject(double x, double y, double width, double height, double spd, double dir, double rot)
+		super(x,y,(gen*0.08), (gen*0.08), 0.015/(gen), (Math.random()*360 +0.5), (Math.random()*360 +0.5));
 		generation = gen;
 		rotspd = 3/generation;
 		
@@ -47,6 +47,7 @@ public class asteroid extends SpaceObject {
 		StdDraw.setYscale(-1, 1);
 	
 		SimpleVector a = new SimpleVector();
+		// asteroid(double x, double y, int gen)
 			a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,1));
 			a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,2));
 			a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,3));

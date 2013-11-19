@@ -40,8 +40,11 @@ public class SpaceObject {
 	// Eftir:  c er true ef s og o skarast
 	public boolean intersects(SpaceObject o)
 	{
-		Rectangle d = this.getBoundingBox();
-		return o.intersects(d);
+		if(o.isVisible()){
+			Rectangle d = this.getBoundingBox();
+			return o.intersects(d);
+		}
+		return false;
 	}
 	// Notkun: c = s.intersects(o)
 	// Fyrir:  ekkert

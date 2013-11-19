@@ -1,9 +1,9 @@
 public class Bullet extends SpaceObject {
 	private int timeLeft = 50; // Muna að stilla hraðann!
 
-	public Bullet(double x, double y, int dir) {
+	public Bullet(double x, double y, double dir) {
 		// SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot)
-		super(x, y, 0.05 * Math.cos(Math.toRadians(dir)), 0.05 * Math.sin(Math.toRadians(dir)), 0.05, (double)dir, dir);
+		super(x, y, 0.05 * Math.cos(Math.toRadians(dir)), 0.05 * Math.sin(Math.toRadians(dir)), 0.05, dir, dir);
 	}
 	
 	public void draw() {
@@ -12,14 +12,6 @@ public class Bullet extends SpaceObject {
 			timeLeft--;
 		}
 	}
-	
-	/*public Rectangle getBoundinBox {
-<<<<<<< HEAD
-    	return new Rectangle(x - (0.5*dx), y - (0.5*dy), dx, dy);
-=======
-    	return new Rectangle(x - (0.5*dx), y - (0.5*dy), dx, );
->>>>>>> 702772aa5862a14c67cbbbab2a0c3993b4123652
-	}*/
 	
 	public static void main(String[] args) {
 
