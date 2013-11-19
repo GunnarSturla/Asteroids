@@ -10,7 +10,7 @@ public class Ship extends SpaceObject
 		// SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot)
 		super(x, y, 0.1, 0.1, spd, direction, rot);
 		maxspeed = 0.05;
-		immortalTime = 20;
+		immortalTime = 200;
 	}
 	
 	public void draw() {
@@ -68,7 +68,10 @@ public class Ship extends SpaceObject
 	public void ReLaunch() {
 		this.x = 0.0;
 		this.y = 0.0;
-		this.immortalTime = 50;
+		this.direction = 90.0;
+		this.rotation = 90.0;
+		this.speed = 0.0;
+		this.immortalTime = 100;
 	}
     
     public static void main(String[] args) {

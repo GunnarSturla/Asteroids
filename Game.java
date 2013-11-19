@@ -69,11 +69,13 @@ public class Game
 	    			if(noBullets < 25) noBullets++;
 	    			s.shoot(b, nextSeat);
 	    			nextSeat = (nextSeat + 1) % 25;
-	    			if (!mute) StdAudio.play("sfx.wav"); // skothljóð - leikurinn virðist frjósa eftir að ég setti þetta inn
+	    			//if (!mute) StdAudio.play("sfx.wav"); // skothljóð - leikurinn virðist frjósa eftir að ég setti þetta inn
     			}
     			//String scoretable = "stig" + score;
     			//StdDraw.text(-0.9, 0.9, scoretable);
 				StdDraw.clear();
+				//StdDraw.picture(0.0,0.0,"grafik/bg.png");
+				
 				if (lives < 1)
 				{
 					menu = true;
@@ -98,7 +100,6 @@ public class Game
 					b[i].draw();
 				}
 	
-				s.draw();
 				
 				//Tékkar á árekstrum
 				for(int i = 0; i < a.size(); i++)
@@ -106,17 +107,18 @@ public class Game
 					tmp = (asteroid)a.get(i); // temo breyta sem geymir asteriod-ið sem á að færa og teikna
 					for(int j = 0; j < noBullets; j++)
 					{
-						if(tmp.intersects(b[j]))
+						if(tmp.intersects(b[j]) && b[j].isVisible())
 						{
-							if(b[j].isVisible()) tmp.destroy(a,i);
+							tmp.destroy(a,i);
 							b[j].hide();
-							score++;	
+							score++;
 						}
 					}
-					if(tmp.intersects(s))
+					if(s.isImmortal() && s.intersects(tmp))
 					{
 						//b[26] = new Bullet(0.0,0.0,(int)(Math.random()*360));
-						//s.ReLaunch();
+						s.ReLaunch();
+						
 						lives--;
 					}
 				}
@@ -124,12 +126,16 @@ public class Game
 				// Teiknar öll stökin í a vectornum
 				for(int i = 0; i < a.size() ;i++)
 				{
-				tmp = (asteroid)a.get(i);
+					tmp = (asteroid)a.get(i);
 					tmp.draw();
 				}
+				
+				// Teiknar skipið
+				s.draw();
+
 				StdDraw.show(20);
 			}
-				System.out.println(score);		
+				//System.out.println(score);		
 		}
 	}
 }
