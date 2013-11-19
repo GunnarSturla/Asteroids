@@ -1,23 +1,12 @@
 public class Game
 {
-	//Astroid[] a = new astroid[N];
-	/*for (int i = 0; i < N; i++)
-	{
-		a[i] = Math.random(), Math.random(), 1;
-
-	}*/
-	public void newGame()
-	{
-
-	}
-
 	public static void main(String[] args)
 	{
 		int timetilldeath = 200;
 		StdDraw.setCanvasSize(800,800);
 		StdDraw.setXscale(-1, 1);
 		StdDraw.setYscale(-1, 1);
-		StdDraw.setFont();
+		//StdDraw.setFont("Monospaced");
 		SimpleVector a = new SimpleVector();
 		a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,3));
 		a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,3));
@@ -71,16 +60,36 @@ public class Game
 	    			nextSeat = (nextSeat + 1) % 25;
 	    			//if (!mute) StdAudio.play("sfx.wav"); // skothljóð - leikurinn virðist frjósa eftir að ég setti þetta inn
     			}
-    			//String scoretable = "stig" + score;
-    			//StdDraw.text(-0.9, 0.9, scoretable);
 				StdDraw.clear();
 				//StdDraw.picture(0.0,0.0,"grafik/bg.png");
-				
-				if (lives < 1)
+				if (lives >= 2)
 				{
+					StdDraw.picture(-0.9, 1, "grafik/ship1.png", 0.15, 0.15, 92);
+				}
+				if (lives > 2)
+				{
+					StdDraw.picture(-0.8, 1, "grafik/ship1.png", 0.15, 0.15, 92);
+				}
+				String scoretable = " " + score;
+    			StdDraw.text(-1, 1, scoretable);
+				if (lives == 0)
+				{
+					StdDraw.clear();
 					menu = true;
-					// prompt - viltu byrja nýjan leik
+					StdDraw.picture(0.0, 0.0, "start.jpg", 2.2, 2.2, 0.0);
+					
+    				if(StdDraw.isKeyPressed(32))
+					{
+						menu = false;
+						StdAudio.play("startupsound.wav");
+						lives = 3;
+						score = 0;
+					}
 
+					/*SecurityManager sm = System.getSecurityManager();
+					if (sm != null) {
+    				sm.checkPermission(
+        			new HighScorePermission(gameName));*/
 				}
 				asteroid tmp;
 				// Hreyfir öll asteroid-in í a vectornum
