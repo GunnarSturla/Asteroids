@@ -1,5 +1,3 @@
-
-
 public class Game
 {
 	//Astroid[] a = new astroid[N];
