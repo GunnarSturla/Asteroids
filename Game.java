@@ -1,6 +1,6 @@
 public class Game
 {
-<<<<<<< HEAD
+
 	private int noBullets, nextSeat, score, lives, noHiddenAsts, highScore;
 	private SimpleVector a = new SimpleVector();
 	private boolean menu = true;
@@ -26,7 +26,7 @@ public class Game
 		}
 
 
-=======
+
 	public static void main(String[] args)
 	{
 		int timetilldeath = 200;
@@ -42,7 +42,6 @@ public class Game
 		int nextSeat = 0;
 		int score = 0;
 		int lives = 3;
->>>>>>> 84f5fd3465347a5ca9234596ddbfa1f8011f757f
 		
     	//Ship(double x, double y, double spd, double direction, int rot)
     	Ship s = new Ship(0.0, 0.0, 0.0, 90.0, 90);
@@ -92,7 +91,6 @@ public class Game
 				} else {
 					this.noHiddenAsts++;
 				}
-<<<<<<< HEAD
 			}
 		
 			// hreyfa skipið
@@ -117,7 +115,7 @@ public class Game
 						b[j].hide();
 						score = score+level;
 					}
-=======
+
 		    	// left arrow || a
     			if(StdDraw.isKeyPressed(37) || StdDraw.isKeyPressed(83)) s.turn(1);
     			// right arrow || d
@@ -162,7 +160,7 @@ public class Game
 					if (sm != null) {
     				sm.checkPermission(
         			new HighScorePermission(gameName));*/
->>>>>>> 84f5fd3465347a5ca9234596ddbfa1f8011f757f
+
 				}
 				if(s.isImmortal() && s.intersects(tmp))
 				{
