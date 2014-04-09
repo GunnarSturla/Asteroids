@@ -1,27 +1,38 @@
 public class Game
 {
-	private int noBullets, nextSeat, score, lives;
-	SimpleVector a = new SimpleVector();
-	boolean menu = true;
-	boolean mute = false;
+	private int noBullets, nextSeat, score, lives, noHiddenAsts, highScore;
+	private SimpleVector a = new SimpleVector();
+	private boolean menu = true;
+	private boolean mute = false;
+	private Bullet b[] = new Bullet[25];
 	
-	public void play()
-	{
-		this.a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,3));
-		this.a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,3));
-		
-		Bullet b[] = new Bullet[25];
+	public void play() {
+		this.play(1);
 		this.noBullets = 0;
 		this.nextSeat = 0;
 		this.score = 0;
 		this.lives = 3;
+		this.noHiddenAsts = 0;
+	}
+	public void play(int level)
+	{
+		this.a = new SimpleVector();
+		this.a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,3));
+		this.a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,3));
+		for(int i = 1; i < level; i++)
+		{
+			this.a.add(new asteroid(Math.random()*2-1,Math.random()*2-1,3));
+		}
+
+
 		
     	//Ship(double x, double y, double spd, double direction, int rot)
     	Ship s = new Ship(0.0, 0.0, 0.0, 90.0, 90);
     			// Game loop
     	//StdAudio.play("216 9 Samurai Quarta 330 Rmx.wav");
-		while(lives > 1)
+		while(lives > 0)
 		{
+			this.noHiddenAsts = 0;
 			// Pásu takkinn
 			if(StdDraw.isKeyPressed(80))
 			{
@@ -57,7 +68,12 @@ public class Game
 			for(int i = 0; i < a.size() ;i++)
 			{
 				tmp = (asteroid) a.get(i);
-				tmp.move();
+				if(tmp.isVisible())
+				{
+					tmp.move();
+				} else {
+					this.noHiddenAsts++;
+				}
 			}
 		
 			// hreyfa skipið
@@ -80,7 +96,7 @@ public class Game
 					{
 						tmp.destroy(a,i);
 						b[j].hide();
-						score++;
+						score = score+level;
 					}
 				}
 				if(s.isImmortal() && s.intersects(tmp))
@@ -101,45 +117,84 @@ public class Game
 			
 			// Teiknar skipið
 			s.draw();
+
 			// Teiknar byssukúlur
 			for(int i = 0; i < noBullets; i++)
 			{
-				b[i].draw();
+				if(b[i].isVisible()) b[i].draw();
 			}
+			//teiknar lífin og stigatöfluna
+			this.drawLives();
 
 			StdDraw.show(20);
+			
+			// Kallar á næsta borð ef engin asteroids eru eftir
+			if(this.noHiddenAsts == this.a.size())
+			{
+				for(int i = 0; i < this.noBullets; i++)
+				{
+					b[i].hide();
+				}
+				play(level+1);
+			}
 		}
 				//System.out.println(score);
-
-
+		this.highScore = Math.max(score,this.highScore);
 	}
 	
+	
+	public void drawLives() {
+		if (lives >= 2)
+		{
+			StdDraw.picture(-0.9, 1, "grafik/ship1.png", 0.15, 0.15, 95);
+		}
+		if (lives > 2)
+		{
+			StdDraw.picture(-0.8, 1, "grafik/ship1.png", 0.15, 0.15, 95);
+		}
+		String scoretable = " " + score;
+		StdDraw.text(-1, 1, scoretable);
+		/*if (lives == 0)
+		{
+			StdDraw.clear();
+			menu = true;
+			StdDraw.picture(0.0, 0.0, "start.jpg", 2.2, 2.2, 0.0);
+			
+			if(StdDraw.isKeyPressed(32))
+			{
+				menu = false;
+				StdAudio.play("startupsound.wav");
+				lives = 3;
+				score = 0;
+			}
+		}*/
+	}
 	public void menu()
 	{
-	
-	}
-	
-	public void Game()
-	{
-
 		while(true) {
 			StdDraw.clear();
 			// Start Menu
-			StdDraw.picture(0.0, 0.0, "start.jpg", 2.2, 2.2, 0.0);
+			StdDraw.picture(0.0, 0.0, "grafik/start.jpg", 2.2, 2.2, 0.0);
 			if(StdDraw.isKeyPressed(32))
 			{
+				StdAudio.play("sounds/startupsound.wav");
 				this.play();
-				StdAudio.play("startupsound.wav");
 			}
+
+			String scoretable = " Highscore: " + this.highScore;
+			StdDraw.text(-0.65, 1, scoretable);
+			
+			StdDraw.show(20);
 		}
 	}
+
 	public static void main(String[] args)
 	{
 		StdDraw.setCanvasSize(800,800);
 		StdDraw.setXscale(-1, 1);
 		StdDraw.setYscale(-1, 1);
 		Game game = new Game();
-		game.play();
+		game.menu();
 		//StdDraw.setFont();
 		//int gb = this.Game();
 		

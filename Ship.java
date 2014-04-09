@@ -4,15 +4,20 @@ public class Ship extends SpaceObject
 	private double maxspeed;
 	private boolean accel = false;
 
-
+	// Notkun: s = new Ship (x, y, spd, direction, rot)
+	// Fyrir: -1 < x,y < 1,
+	// Eftir: s er skip með miðju í x,y hraða spd, stefnu direction og snúning rot
 	public Ship(double x, double y, double spd, double direction, int rot)
 	{
 		// SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot)
 		super(x, y, 0.1, 0.1, spd, direction, rot);
 		maxspeed = 0.05;
-		immortalTime = 200;
+		immortalTime = 20;
 	}
 	
+	// Notkun: s.draw()
+   	// Fyrir: ekkert
+    // Eftir: s (skipið) er teiknað
 	public void draw() {
 			if(this.accel) StdDraw.picture(x,y,"grafik/Fire2.png",super.w*2.04,super.h*2,(double)this.rotation);
 			StdDraw.picture(x,y,"grafik/ship1.png",super.w*2.04,super.h*2,(double)this.rotation);
@@ -26,10 +31,16 @@ public class Ship extends SpaceObject
 			this.speed = this.speed * 0.995;
 	}
 	
+		// Notkun: s.turn(i)
+    	// Fyrir:  ekkert
+    	// Eftir:  i*7 bætist við rotation
 	public void turn(int i) {
 		this.rotation = (this.rotation + i*7);
 	}
 	
+		// Notkun: s.accelerate()
+    	// Fyrir:  ekkert
+    	// Eftir:  s (skipið) fær nýja stefnu út frá því hvernig það snýr og í hvaða átt það stefnir
 	public void accelerate() {
 		//if(super.speed < maxspeed) super.speed = super.speed + 0.001;
 		
@@ -52,28 +63,36 @@ public class Ship extends SpaceObject
 		
 	}
 	
+		// Notkun: s.shoot(b, nextSeat)
+    	// Fyrir:  ekkert
+    	// Eftir:  s (skipið) skýtur kúlum
 	public void shoot(Bullet[] b, int nextSeat) {
 			b[nextSeat] = new Bullet(this.x,this.y,this.rotation);
 			
-			this.shotInterval = 10;
+			this.shotInterval = 5;
 	}
 	public int getShotInterval() {
 		return this.shotInterval;
 	}
 	
-	
+		// Notkun: s.isImmortal()
+    	// Fyrir:  ekkert
+    	// Eftir:  s (skipið) er ódauðlegt í ákveðinn tíma
 	public boolean isImmortal()
 	{
 		return (immortalTime <= 0);
 	}
-
+	
+	// Notkun: s.ReLaunch()
+    	// Fyrir:  ekkert
+    	// Eftir:  s (skipið) breyturnar x,y,direction,rotation,speed eru upphafsstilltar immortalTime fær 	upphafstímann 20	
 	public void ReLaunch() {
 		this.x = 0.0;
 		this.y = 0.0;
 		this.direction = 90.0;
 		this.rotation = 90.0;
 		this.speed = 0.0;
-		this.immortalTime = 100;
+		this.immortalTime = 20;
 	}
     
     public static void main(String[] args) {

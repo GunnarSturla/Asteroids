@@ -3,9 +3,9 @@ public class SpaceObject {
 	public double speed, direction, rotation;
 	private boolean visible;
 	
-	// Notkun:	a = new SpaceObject(x, y, 0.01, 90, 0);
-	// 
-	
+	// Notkun:	a = new SpaceObject(x, y, w, h, spd, dir, rot);
+	// Fyrir:	-1 < x,y < 1, 0 < w,h
+	// Eftir:	Object með staðsetningu x,y, breidd w, hæð h, hraða spd, stefnu dir, snúning rot
 	public SpaceObject (double x, double y, double w, double h, double spd, double dir, double rot) {
 
 		this.x = x;
@@ -24,7 +24,7 @@ public class SpaceObject {
 	// Fyrir:	ekkert
 	// Eftir: 	a fær nýja staðsetningu, hreyfist samkvæmt speed í direction átt, birtist hinum megin ef hann fer út fyrir rammann.
 	public void move() {
-		if(this.visible) {
+		if(this.isVisible()) {
 			double dx = this.speed * Math.cos(Math.toRadians(this.direction%360));
 			double dy = this.speed * Math.sin(Math.toRadians(this.direction%360));
 
@@ -40,7 +40,7 @@ public class SpaceObject {
 	// Eftir:  c er true ef s og o skarast
 	public boolean intersects(SpaceObject o)
 	{
-		if(o.isVisible())
+		if(o.isVisible() || this.isVisible())
 		{
 			Rectangle d = this.getBoundingBox();
 			return o.intersects(d);
@@ -62,7 +62,10 @@ public class SpaceObject {
 	{
 		return new Rectangle(x, y, w, h);
 	}
-
+	
+	// Notkun: a.hide()
+	// Fyrir: ekkert
+	// Eftir: a er falið, ekki lengur sjáanlegt
 	public void hide() {
 		this.visible = false;
 		this.x = -5;

@@ -1,5 +1,5 @@
 public class Bullet extends SpaceObject {
-	private int timeLeft = 50; // Muna að stilla hraðann!
+	private int timeLeft = 40; // Muna að stilla hraðann!
 
 	public Bullet(double x, double y, double dir) {
 		// SpaceObject(double x, double y, double w, double h, double spd, double dir, int rot)
@@ -7,9 +7,11 @@ public class Bullet extends SpaceObject {
 	}
 	
 	public void draw() {
-		if(timeLeft > 0 && this.isVisible()) {
+		if(timeLeft > 0) {
 			StdDraw.line(this.x, this.y, this.x+this.w, this.y+this.h);
 			timeLeft--;
+		} else {
+			this.hide();
 		}
 	}
 	
@@ -26,7 +28,7 @@ public class Bullet extends SpaceObject {
 		
 		while(true) {
 			StdDraw.clear();
-			if(interval == 50) {
+			if(interval == 25) {
 				b[nextSeat] = new Bullet(0.0,0.0,(int)(Math.random()*360));
 				if(noBullets < 25) noBullets++;
 				nextSeat = (nextSeat + 1) % 25;
